@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AtomiX Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="atomix.js"></script>
+    <!-- ✅ Swiper CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <style>
+    .smile {
+      mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.01),
+        rgba(0, 0, 0, 1)
+      );
+    }
+
+    .swiper-pagination-bullet {
+      background-color: white;
+      opacity: 1; /* 改這裡：0.5 → 1，變成純白色 */
+      width: 30px;
+      height: 4px;
+      border-radius: 0;
+      transition: all 0.3s;
+      display: inline-block;
+      margin: 0 7px !important; /* 改這裡：6px → 15px */
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background-color: #ef8201; /* 改成橘色 */
+    }
+
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal,
+    .swiper-pagination-custom,
+    .swiper-pagination-fraction {
+      left: auto !important;
+      width: fit-content;
+    }
+
+    .swiper-pagination-bullet {
+      width: 70px !important;
+      height: 4px !important;
+    }
+  </style>
+  <body>
+    <!-- 斷點設定為2xl -->
+    <!-- 最上面header的導覽列 -->
+    <header class="w-full bg-black text-white sticky top-0 z-50">
+      <div
+        class="flex items-end justify-between h-[120px] pb-[20px] 2xl:mr-[240px]"
+      >
+        <!-- Left: Logo + Hamburger -->
+
+        <div class="header_left flex justify-between items-end">
+          <div class="iconbox w-[150px] 2xl:w-[240px] text-center">
+            <button class="focus:outline-none">
+              <i class="fa fa-bars !text-[27px]"></i>
+            </button>
+          </div>
+          <!-- Logo -->
+          <a href="/" class="block">
+            <img src="lungmeng_logo.png" alt="LUNGMENG" class="h-full" />
+          </a>
+        </div>
+
+        <div
+          class="rightbox 2xl:mr-[40px] flex 2xl:flex-col justify-between h-full flex-col-reverse"
+        >
+          <!-- Right: Support, Contact, Lang, Search -->
+          <div
+            class="flex mr-[50px] justify-end items-center space-x-[15px] 2xl:space-x-[35px] text-xs pt-[30px]"
+          >
+            <a href="#" class="text-gray-400 hover:text-white">Support</a>
+            <a href="#" class="text-orange-400 hover:text-white">Contact us</a>
+            <span class="text-gray-600">|</span>
+
+            <!-- Language selector -->
+            <select
+              class="bg-black text-white border-none text-xs focus:outline-none 2xl:mr-[50px]"
+            >
+              <option>EN</option>
+              <option>ZH</option>
+            </select>
+
+            <!-- Search icon -->
+            <button class="p-1">
+              <i class="fa fa-search text-white"></i>
+            </button>
+          </div>
+
+          <!-- Center: Navigation (desktop only) -->
+          <nav
+            class="hidden 2xl:flex space-x-[50px] text-[18px] whitespace-nowrap"
+          >
+            <a href="#" class="hover:text-orange-400">PRODUCTS</a>
+            <a href="#" class="hover:text-orange-400">SOLUTIONS</a>
+            <a href="#" class="hover:text-orange-400">ABOUT</a>
+            <a href="#" class="hover:text-orange-400">GLOBAL PRESENCE</a>
+            <a href="#" class="hover:text-orange-400">CONTACT</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- 結束了最上面header的導覽列 -->
+    <!-- 開始巨大的輪播圖區塊 -->
+    <!-- 🖼️ Swiper 輪播容器 -->
+    <div
+      class="swiper w-full rounded overflow-hidden max-h-[400px] md:max-h-[600px] xl:max-h-[750px] 2xl:max-h-[870px] relative"
+    >
+      <!-- 新增黑色漸層 overlay -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-[260px] md:h-[340px] 2xl:h-[420px] bg-gradient-to-t from-black/80 to-transparent z-[2]"
+      ></div>
+
+      <!-- 文字區塊 z-index 要比 overlay 高 -->
+      <div
+        class="absolute z-[2] left-4 md:left-8 lg:left-12 2xl:left-[240px] bottom-4 md:bottom-8 2xl:bottom-[130px] text-white"
+      >
+        <!-- 主標題 -->
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold mb-4 leading-[40px] md:leading-[50px] 2xl:!leading-[100px]"
+        >
+          專業塑膠機械製造商<br />
+          專業塑膠機械製造商
+        </h2>
+        <!-- 副標題 -->
+        <p
+          class="text-base md:text-lg lg:text-xl 2xl:text-2xl mb-4 md:mb-6 2xl:mb-[30px] max-w-[600px]"
+        >
+          提供最佳的塑膠機械解決方案，打造您的競爭優勢
+        </p>
+        <!-- 按鈕 -->
+        <button
+          class="bg-[#EF8201] hover:bg-[#ff9626] text-black w-[200px] h-[50px] text-base md:text-lg transition-colors duration-300"
+        >
+          了解更多
+        </button>
+      </div>
+
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <img
+            src="https://www.clf.com.tw/UserFiles/figure/banner-03 拷貝_pic.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <img
+            src="https://www.clf.com.tw/UserFiles/figure/banner-03 拷貝_pic.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <img
+            src="https://www.clf.com.tw/UserFiles/figure/banner-03 拷貝_pic.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <img
+            src="https://www.clf.com.tw/UserFiles/figure/banner-03 拷貝_pic.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- 🧭 Pagination 指示器 -->
+      <div
+        class="swiper-pagination bottom-4 left-1/2 transform -translate-x-1/2 2xl:!bottom-[125px] 2xl:!right-[255px] 2xl:!left-auto 2xl:!transform-none"
+      ></div>
+    </div>
+    <!--  -->
+    <div class="max-w-[1500px] mx-auto">
+      <h2 class="text-[46px] mt-[80px] mb-[40px] ml-[35px]">
+        Our Efficient Solution
+      </h2>
+    </div>
+    <div
+      class="w-[1500px] mx-auto px-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4 gap-x-[40px] gap-y-[50px] 2xl:px-0 mb-[160px]"
+    >
+      <div class="@macro:Card bg-white flex flex-col 2xl:h-[560px]">
+        <img src="card_01.png" class="w-full" alt="..." />
+        <div
+          class="flex-1 text-white bg-black p-[15px] space-y-[10px] relative"
+        >
+          <h5 class="text-[30px]">Extrusion</h5>
+          <p class="text-[18px] leading-[25px]">
+            Duis aute irure dolor in repreh enderit in volup tate velit esse
+            cillum dolore fugiat
+          </p>
+          <div class="flex justify-end">
+            <button class="w-[145px] h-[50px] bg-[#EF8201] text-black m-[15px]">
+              <a href="">Repair Now</a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <Card h5="{Printing}" img="{print.png}"></Card>
+      <Card h5="{Converting}" img="{conver.png}"></Card>
+      <Card h5="{Recycling}" img="{recycling.png}"></Card>
+    </div>
+    <!-- 要開始寫左邊灰色蓋住又漸層透明的部分 -->
+    <div class="relative bg-[#343B43]">
+      <img class="w-full h-[600px] object-cover" src="smile_man.png" alt="" />
+
+      <!-- 左側文字區塊 -->
+      <div
+        class="absolute left-0 top-0 w-2/3 h-full flex flex-col justify-center pl-8 md:pl-12 2xl:pl-[200px] z-10"
+      >
+        <div class="fixleftmargin ml-[90px]">
+          <div class="text-white space-y-[5px]">
+            <h2 class="text-[52px] font-black">See you at K2025</h2>
+            <p class="text-[32px] leading-normal">
+              Visit us and explore our cutting-edge <br />
+              plastic converting machines-live in action.
+            </p>
+          </div>
+          <!-- K2025 展覽卡片 -->
+          <div class="w-[485px] h-[280px] bg-[#EF8201] mt-[35px]">
+            <!-- 內部容器：離左邊15px，離上面20px -->
+            <div class="ml-[15px] pt-[20px] flex flex-col">
+              <!-- 上面圖片 -->
+              <div class="mb-[15px]">
+                <img
+                  src="橘色圖片.png"
+                  alt="K2025 Exhibition"
+                  class="min-w-[435px] max-h-[140px]"
+                />
+              </div>
+              <!-- 下面文字 -->
+              <div class="text-black">
+                <div class="text-[22px] font-bold mb-[8px]">
+                  Booth no: Hall 6 B66
+                </div>
+                <div class="text-[14px] mb-[4px]">Date: 2025, Oct 8 - 15</div>
+                <div class="text-[14px]">Venue: Düsseldorf, Germany</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 漸層遮罩 -->
+      <div
+        class="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-r from-[#343B43] to-transparent pointer-events-none"
+      ></div>
+    </div>
+
+    <!-- 結束/過度工人微笑區塊 -->
+    <!-- 新增左右排列區塊 -->
+    <div class="w-full bg-white pt-[120px]">
+      <div class="w-[1380px] mx-auto">
+        <!-- 第一個區塊：圖左文右 -->
+        <div
+          class="@macro:FlexContainer flex items-center gap-[60px] mb-[120px]"
+        >
+          <!-- 左側圖片 -->
+          <div class="w-1/2">
+            <img
+              img
+              src="solution_1.png"
+              alt="Industry Progress"
+              class="w-[625px] h-[655px]"
+            />
+          </div>
+          <!-- 右側文字內容 -->
+          <div class="w-1/2 h-[660px] flex flex-col justify-between">
+            <!-- 上方文字區塊 -->
+            <div>
+              <!-- 橘色標題區塊，帶左右裝飾線 -->
+              <div class="flex items-center mb-[30px] mt-[10px] ml-[-15px]">
+                <div class="h-[1px] bg-[#EF8201] w-[130px]"></div>
+                <div
+                  class="text-[#EF8201] text-[18px] uppercase tracking-wide px-[20px] font-medium"
+                >
+                  SOLUTIONS
+                </div>
+                <div class="h-[1px] bg-[#EF8201] w-[130px]"></div>
+              </div>
+
+              <!-- 主標題 -->
+              <h2
+                h2
+                class="text-[46px] font-bold text-black mb-[30px] leading-tight tracking-tight"
+              >
+                Driving Industry Progress<br />
+                Through Integrated Precision
+              </h2>
+
+              <!-- 描述文字 -->
+              <p
+                p
+                p-1
+                class="text-[18px] text-gray-600 leading-tight max-w-[605px]"
+              >
+                Lung Meng is committed to advancing the plastic converting
+                industry toward a more efficient, automated, and sustainable
+                future. Through complete line integration, we help manufacturers
+                worldwide achieve smarter, cleaner, and more responsible
+                production.
+              </p>
+            </div>
+
+            <!-- 下方按鈕區塊 -->
+            <div class="space-y-[18px] mb-[60px] text-start">
+              <button
+                button-1
+                class="w-full bg-[#EF8201] text-white h-[50px] pl-[25px] pr-[30px] text-[24px] font-medium hover:bg-[#ff9626] transition-colors text-left flex items-center"
+              >
+                Product Positioning
+              </button>
+              <button
+                button-2
+                class="w-full bg-[#EF8201] text-white h-[50px] pl-[25px] pr-[30px] text-[24px] font-medium hover:bg-[#ff9626] transition-colors text-left flex items-center"
+              >
+                Product Advantages
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+
+    <div class="w-full bg-[#798088] py-[100px]">
+      <div class="w-[1380px] mx-auto">
+        <FlexContainer
+          class="flex-row-reverse bg-[#798088] text-white !mb-0 ml-[10px]"
+          h2="text-white"
+          p="text-white"
+          img="w-[530px] ml-[85px]"
+          button="w-[610px]"
+          button-1="{COMPANY}"
+          button-2="{BRAND}"
+          button-3="{PRODUCTION AND QUALITY}"
+          p-2="{Lung Meng is committed to advancing the plastic converting industry toward a more efficient, automated, and sustainable future. Through complete line integration, we help manufacturers worldwide achieve smarter, cleaner, and more responsible production.} mt-[30px] mb-[50px]"
+        ></FlexContainer>
+      </div>
+    </div>
+
+    <!-- 下面第二次卡片開始 -->
+    <div
+      class="w-[1380px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-[40px] 2xl:px-0 mb-[160px] mt-[120px]"
+    >
+      <Card
+        class="@micro:Test !bg-[#EEE8E8]"
+        h5="{Multi-Layer Blown Film Machines: The
+Future Of High-Performance Packaging} text-[21px]  font-black text-black"
+        p="{As packaging evolves, manufacturers seek
+advanced solutions to stay competitive. One key
+innovation is the multi-layer blown film
+machine, which co-extrudes multiple layers to
+create high-performance plastic films. This
+article explores}  text-black text-[18px]"
+        a="{Read More}"
+        img="{card_item01.png} p-[10px]"
+        el-2="bg-[#EEE8E8]"
+        el-6="bg-transparent border border-[#EF8201] border-[3px] box-border "
+      ></Card>
+
+      <Test></Test>
+      <Test></Test>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="relative bg-black text-white">
+      <!-- 背景圖片 -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://via.placeholder.com/1500x500"
+          alt=""
+          class="w-full h-full object-cover opacity-20"
+        />
+      </div>
+
+      <!-- 內容區塊 -->
+      <div class="relative z-10 mx-auto px-4 md:px-8 2xl:px-0 pt-16">
+        <!-- Logo 區塊 -->
+        <div class="w-[1380px] mx-auto">
+          <img
+            src="lungmeng_logo.png"
+            alt="LUNGMENG"
+            class="w-[330px] h-[45px] object-contain mb-[35px]"
+          />
+        </div>
+
+        <!-- 四個區塊容器 -->
+        <div class="w-[1380px] mx-auto">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:px-[280px_260px]"
+          >
+            <!-- 左側兩個區塊 -->
+            <div class="flex flex-col gap-8 2xl:flex-row 2xl:gap-16">
+              <!-- Headquarters -->
+              <div class="space-y-4 mr-[10px] ml-[15px]">
+                <h3 class="text-[#EF8201] text-[20px] mb-4">Headquarters</h3>
+                <div class="space-y-2 text-[16px]">
+                  <p>Phone: +886-6-232-1126</p>
+                  <p>Email: sales@lm-hq.com</p>
+                  <p>
+                    No.20, Huan Kang Rd.,<br />
+                    Yung Kang Ind.<br />
+                    Area, Tainan City 710, Taiwan
+                  </p>
+                </div>
+              </div>
+
+              <!-- Taipei Office -->
+              <div>
+                <h3 class="text-[#EF8201] text-[20px] mb-4">Taipei Office</h3>
+                <div class="space-y-2 text-[16px]">
+                  <p>Phone: +886-2-2897-6599</p>
+                  <p>Email: lmtaipei@ms47.hinet.net</p>
+                  <p>
+                    7F., No.12-19, Sec. 2,<br />
+                    Zhongyang S. Rd.,Beitou Dist.,<br />
+                    Taipei City 112, Taiwan
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右側兩個區塊 -->
+            <div
+              class="flex flex-col gap-8 2xl:flex-row 2xl:gap-16 2xl:justify-end"
+            >
+              <!-- Products -->
+              <div>
+                <h3 class="text-[#EF8201] text-[20px] mb-4">PRODUCTS</h3>
+                <div class="space-y-2 text-[16px]">
+                  <a href="#" class="block hover:text-gray-400 cursor-pointer"
+                    >Extrusion</a
+                  >
+                  <a href="#" class="block hover:text-gray-400 cursor-pointer"
+                    >Printing</a
+                  >
+                  <a href="#" class="block hover:text-gray-400 cursor-pointer"
+                    >Converting</a
+                  >
+                  <a href="#" class="block hover:text-gray-400 cursor-pointer"
+                    >Recycling</a
+                  >
+                </div>
+              </div>
+
+              <!-- Solutions & Others -->
+              <div class="space-y-2">
+                <a
+                  href="#"
+                  class="block text-[16px] hover:text-gray-400 cursor-pointer"
+                  >SOLUTIONS</a
+                >
+                <a
+                  href="#"
+                  class="block text-[16px] hover:text-gray-400 cursor-pointer"
+                  >ABOUT US</a
+                >
+                <a
+                  href="#"
+                  class="block text-[16px] hover:text-gray-400 cursor-pointer"
+                  >GLOBAL PRESENCE</a
+                >
+                <a
+                  href="#"
+                  class="block text-[16px] hover:text-gray-400 cursor-pointer"
+                  >SUPPORT</a
+                >
+                <a
+                  href="#"
+                  class="block text-[16px] hover:text-gray-400 cursor-pointer"
+                  >CONTACT US</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="bg-white h-[100px] mt-16 mb-[0px]">
+          <div class="w-[1380px] mx-auto h-full flex items-start justify-end">
+            <div class="text-[16px] text-black !mt-[15px] font-medium">
+              2025 © LUNG MENG MACHINERY CO., LTD. PRM Taiwan Designed by
+              Polaris
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+  <!-- ✅ Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 🚀 Swiper 初始化 -->
+  <script>
+    const swiper = new Swiper(".swiper", {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</html>

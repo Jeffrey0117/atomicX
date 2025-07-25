@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AtomicX - HTML 原生元件化框架</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="atomix.js"></script>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- 元件模板區 -->
+  <div class="@macro:Hero py-24 px-6 bg-gradient-to-r from-indigo-900 to-purple-800 text-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <div class="flex-1 text-center md:text-left">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">AtomicX</h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-300">HTML 原生元件化方案，無需框架即可重用元件</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <a href="#get-started" class="px-8 py-3 bg-white text-indigo-900 font-bold rounded-lg hover:bg-gray-100 transition">立即開始</a>
+          <a href="#features" class="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-indigo-900 transition">探索功能</a>
+        </div>
+      </div>
+      <div class="flex-1 animate-float">
+        <img src="https://placehold.co/600x400" class="rounded-xl shadow-2xl" alt="AtomicX 示意圖" />
+      </div>
+    </div>
+  </div>
+
+  <div class="@macro:FeatureCard p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition">
+    <div class="w-14 h-14 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-6">
+      <i class="fas fa-cube"></i>
+    </div>
+    <h3 class="text-xl font-bold mb-3">功能標題</h3>
+    <p class="text-gray-600">功能描述文字，這裡可以詳細說明這個功能的特色與優勢。</p>
+  </div>
+
+  <div class="@macro:Testimonial bg-white p-8 rounded-xl shadow-md">
+    <div class="flex items-center mb-6">
+      <img src="https://placehold.co/80" class="w-12 h-12 rounded-full mr-4" alt="用戶頭像" />
+      <div>
+        <h4 class="font-bold">用戶名稱</h4>
+        <p class="text-gray-500 text-sm">職稱/公司</p>
+      </div>
+    </div>
+    <p class="text-gray-700 italic">"這裡是用戶的真實評價內容，可以描述他們使用 AtomicX 的體驗和感受。"</p>
+    <div class="flex mt-4 text-yellow-400">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+  </div>
+
+  <div class="@micro:Button px-6 py-3 rounded-lg font-bold text-center transition">
+    <a href="#" class="block">按鈕文字</a>
+  </div>
+
+  <!-- 頁面內容區 -->
+  <Hero h1="{不要懷疑就是這樣}" el-6="w-[300px]"></Hero>
+
+  <section id="features" class="max-w-6xl mx-auto py-20 px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">核心功能</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">完全基於 HTML 的元件化開發，無需學習新框架</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <FeatureCard 
+        i="{fas fa-code}"
+        h3="{無框架依賴}"
+        p="{直接寫 HTML 即可模組化開發，無需 React/Vue 等框架，減少技術債}"
+        el-0="{bg-indigo-100 text-indigo-600}"
+      ></FeatureCard>
+
+      <FeatureCard 
+        i="{fas fa-bolt}"
+        h3="{即時預覽}"
+        p="{修改元件立即反映在所有使用處，開發體驗流暢}"
+        el-0="{bg-purple-100 text-purple-600}"
+      ></FeatureCard>
+
+      <FeatureCard 
+        i="{fas fa-share-alt}"
+        h3="{元件嵌套}"
+        p="{支援元件內使用其他元件，建立複雜的 UI 結構}"
+        el-0="{bg-pink-100 text-pink-600}"
+      ></FeatureCard>
+    </div>
+  </section>
+
+  <section class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">用戶見證</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Testimonial 
+          img="{https://placehold.co/80}"
+          h4="{張工程師}"
+          p="{前端開發者}"
+          p="{「AtomicX 徹底改變了我的工作流程，現在我可以快速建立可重用的元件而不必擔心框架限制。」}"
+        ></Testimonial>
+
+        <Testimonial 
+          img="{https://placehold.co/80}"
+          h4="{李設計師}"
+          p="{UI/UX 設計師}"
+          p="{「作為設計師，我可以直接參與元件的建立和修改，無需等待開發人員。」}"
+          div="{text-yellow-400}"
+        ></Testimonial>
+      </div>
+    </div>
+  </section>
+
+  <section id="get-started" class="max-w-6xl mx-auto py-20 px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">立即開始</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">只需幾分鐘即可將 AtomicX 整合到您的專案中</p>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-6">安裝指南</h3>
+      <div class="bg-gray-800 text-gray-100 p-4 rounded-lg mb-6 overflow-x-auto">
+        <pre><code>&lt;!-- 在 HTML 文件中加入 AtomicX --&gt;
+&lt;script&gt;
+document.addEventListener("DOMContentLoaded", () => {
+  // AtomicX 實現代碼...
+});
+&lt;/script&gt;</code></pre>
+      </div>
+
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button class="bg-indigo-600 text-white hover:bg-indigo-700">
+          <a href="#">下載原始碼</a>
+        </Button>
+        <Button class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50">
+          <a href="#">查看文檔</a>
+        </Button>
+      </div>
+    </div>
+  </section>
+<footer class="@export:FooterBlock bg-gray-900 text-white py-12 ">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">AtomicX</h3>
+        <p class="text-gray-400">HTML 原生元件化解決方案</p>
+      </div>
+
+      <div class="@macro:footerItem">
+        <h4 class="font-bold mb-4">資源</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white transition">文檔</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition">範例</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition">部落格</a></li>
+        </ul>
+      </div>
+
+      <footerItem h4="{社群}" el-4="{FB}" el-6="{IG}" el-8="{抖音}">
+      </footerItem>
+
+      <footerItem h4="{聯絡我們}" el-4="{電子郵報}" el-6="{問題回報}" el-8="*">
+      </footerItem>
+    </div>
+
+    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+      <p>© 2023 AtomicX. 保留所有權利。</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- 在頁面任意位置使用 -->
+<!-- <FooterBlock></FooterBlock>
+ -->
+
+
+
+
+</body>
+</html>
