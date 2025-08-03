@@ -373,6 +373,64 @@ if (document.readyState === "loading") {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 智能檢測並注入 Tailwind CSS CDN（避免重複載入）
+  const checkAndInjectTailwind = () => {
+    // 檢查是否已經有 Tailwind CSS 的 script 標籤（各種可能的 URL）
+    const tailwindUrls = [
+      "https://cdn.tailwindcss.com",
+      "https://unpkg.com/tailwindcss",
+      "tailwindcss.com",
+      "tailwind",
+    ];
+
+    const existingTailwindScripts = Array.from(
+      document.querySelectorAll("script")
+    ).filter(
+      (script) =>
+        script.src && tailwindUrls.some((url) => script.src.includes(url))
+    );
+
+    // 檢查是否已經有 Tailwind CSS 的 link 標籤
+    const existingTailwindLinks = Array.from(
+      document.querySelectorAll("link")
+    ).filter(
+      (link) => link.href && tailwindUrls.some((url) => link.href.includes(url))
+    );
+
+    // 檢查是否已經載入過 AtomicX 的 Tailwind
+    const atomicxTailwind = document.getElementById("atomicx-tailwind-cdn");
+
+    if (
+      existingTailwindScripts.length === 0 &&
+      existingTailwindLinks.length === 0 &&
+      !atomicxTailwind
+    ) {
+      console.log("No existing Tailwind CSS detected, injecting CDN...");
+      const tailwindScript = document.createElement("script");
+      tailwindScript.src = "https://cdn.tailwindcss.com";
+      tailwindScript.id = "atomicx-tailwind-cdn";
+      document.head.appendChild(tailwindScript);
+      console.log("Tailwind CSS CDN injected by AtomicX.");
+    } else {
+      console.log("Tailwind CSS already exists, skipping injection.");
+      if (existingTailwindScripts.length > 0) {
+        console.log(
+          `Found ${existingTailwindScripts.length} existing Tailwind script(s):`,
+          existingTailwindScripts.map((s) => s.src)
+        );
+      }
+      if (existingTailwindLinks.length > 0) {
+        console.log(
+          `Found ${existingTailwindLinks.length} existing Tailwind link(s):`,
+          existingTailwindLinks.map((l) => l.href)
+        );
+      }
+    }
+  };
+
+  // 執行 Tailwind 檢查與注入
+  checkAndInjectTailwind();
+
   const microMap = new Map();
   const macroTemplatesArray = [];
 
