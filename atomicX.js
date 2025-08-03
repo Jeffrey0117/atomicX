@@ -1,3 +1,7 @@
+const rendered = new Map(); // 儲存 @export 渲染用的 <Card>、<Header>...
+const exportMap = new Map(); // 備用用來追蹤 export 定義
+const macroTemplates = new Map(); // 儲存 @macro 定義的區塊
+
 const AtomicX = {
   // 解析屬性值，正確處理包含空格的 {...} 內容
   parseAttributeValue(value) {
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const macros = new Map();
   const macroTemplates = [];
   const microMap = new Map();
-  const rendered = new Map();
+
   const exportMap = new Map();
 
   // 一次性收集所有需要處理的元素，避免重複查詢
@@ -409,3 +413,77 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// === export 擴充功能：允許外部匯入 export ===
+window.atomicX = {
+  useCache: true,
+
+  from(urls) {
+    const list = Array.isArray(urls) ? urls : [urls];
+    return Promise.all(
+      list.map(async (url) => {
+        console.log("準備 fetch:", url);
+        const key = `atomicX:export:${url}`;
+        let html;
+
+        if (this.useCache && localStorage.getItem(key)) {
+          html = localStorage.getItem(key);
+        } else {
+          const res = await fetch(url);
+          html = await res.text();
+          if (this.useCache) localStorage.setItem(key, html);
+        }
+
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+
+        // 處理 @export
+        const exportEls = temp.querySelectorAll("[class*='@export:']");
+        exportEls.forEach((el) => {
+          const match = el.className.match(/@export:(\w+)/);
+          if (match) {
+            const name = match[1].toLowerCase();
+            exportMap.set(name, el.cloneNode(true));
+            rendered.set(name, el.cloneNode(true));
+          }
+        });
+
+        // 順手處理 @macro（如果你之後要用）
+        const macroEls = temp.querySelectorAll("[class*='@macro:']");
+        macroEls.forEach((el) => {
+          const match = el.className.match(/@macro:(\w+)/);
+          if (match) {
+            const name = match[1].toLowerCase();
+            macroTemplates.set(name, el.cloneNode(true));
+          }
+        });
+      })
+    ).then(() => {
+      // 套用 export 的渲染
+      rendered.forEach((template, tagName) => {
+        const targetElements = document.querySelectorAll(tagName);
+        targetElements.forEach((el) => {
+          const clone = template.cloneNode(true);
+          if (el.hasAttribute("class")) {
+            clone.classList.add(...el.classList); // 保留原 class
+          }
+          el.replaceWith(clone);
+        });
+      });
+    });
+  },
+  clear() {
+    Object.keys(localStorage)
+      .filter((k) => k.startsWith("atomicX:export:"))
+      .forEach((k) => localStorage.removeItem(k));
+  },
+
+  auto() {
+    document.querySelectorAll("script[data-export]").forEach((el) => {
+      const urls = el
+        .getAttribute("data-export")
+        .split(",")
+        .map((s) => s.trim());
+      this.from(urls);
+    });
+  },
+};
