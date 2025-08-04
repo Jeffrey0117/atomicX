@@ -17,7 +17,7 @@
 
 </div>
 
-## ✨ Features
+## Features
 
 - **Macro Components** - Define reusable templates with `@macro:` syntax
 - **Attribute Injection** - Dynamically inject content into slots using `{curly_braces}`
@@ -26,15 +26,24 @@
 - **Atomic CSS Ready** - Perfect companion for Tailwind/UnoCSS workflows
 - **Debugging Tools** - Built-in utilities for template inspection
 
+## Why AtomicX?
+
+| Scenario | Traditional HTML | With AtomicX |
+|----------|------------------|--------------|
+| Reusable Cards | Copy-paste div structures | `<Card h1="..."/>` |
+| Style Variations | Multiple CSS classes | `@micro:Variant` |
+| Content Slots | Repeated markup | `{slot_name}` syntax |
+| Team Collaboration | Template fragmentation | Centralized macros |
+
 ---
-## 🔗 Demo
+## Demo
 
 👉 [index.html](https://jeffrey0117.github.io/atomicX/)
 
 👉 [Source code](https://github.com/Jeffrey0117/atomicX/blob/main/docs/index.html)
 
 
-## 🚀 Quick Start
+## Quick Start
 
 ### CDN Installation
 ```html
@@ -48,19 +57,19 @@
 <script src="./atomicx.js"></script>
 ```
 
-## 💡 Core Concepts
+## Core Concepts
 
 ### 1. Macro Components
 Define reusable templates directly in HTML:
 ```html
 <!-- Copy the original element (which will still be rendered)-->
 <div class="@macro:Card bg-white p-4 rounded-lg shadow">
-  <h3 class="text-xl">{title}</h3>
-  <p class="text-gray-600">{content}</p>
+  <h3 class="text-xl">The first Product</h3>
+  <p class="text-gray-600">something about this stuff</p>
 </div>
 
 <!-- Usage -->
-<Card title="Hello" content="World"></Card>
+<Card h3="{The second Prodcut}" p="{here is NEW stuff}"></Card>
 ```
 
 ### 2. Attribute Injection
@@ -81,8 +90,27 @@ Style specific child elements using `el-[index]`:
   el-2="bg-gray-100"      <!-- Styles second child -->
 />
 ```
+### 4. Export Component
 
-## 📚 Documentation
+#### page1.html
+``` 
+    <div class="@export:Card max-w-[1460px] mx-auto py-[55px] ">  <!-- Make this UI reuseable -->
+        <h1 class="text-6xl font-bold text-gray-800">News</h1>
+        <p class="text-[20px] mt-3">Choose your country, Please select your region to find the contact closest to you.</p>
+    </div>
+```
+
+#### new.html
+```
+ <Card> </Card>  <!-- This is the component which you had export from page1.html -->
+ <Card h1="{GOODS}" p="text-[32px] mt-5"> </Card>
+
+  <script>
+    atomicX.clear(); <!-- Clear the cache -->
+    atomicX.from("page1.html");   <!-- Get your components from page1.html-->
+  </script>
+```
+## Documentation
 
 | Section | Description |
 |---------|-------------|
@@ -90,7 +118,7 @@ Style specific child elements using `el-[index]`:
 | [Use Cases](docs/use-cases.md) | Common patterns and best practices |
 | [Debugging](docs/debugging.md) | Troubleshooting templates |
 
-## 🔍 Examples
+## Examples
 
 ### Card Component
 ```html
@@ -123,7 +151,7 @@ Style specific child elements using `el-[index]`:
 <PrimaryBtn>Primary</PrimaryBtn>
 ```
 
-## 🛠️ Debugging
+## Debugging
 
 ```javascript
 // Show all processed components
@@ -133,26 +161,18 @@ atomicX.debug.showProcessedElements();
 atomicX.debug.inspect('Card');
 ```
 
-## 🌈 Why AtomicX?
 
-| Scenario | Traditional HTML | With AtomicX |
-|----------|------------------|--------------|
-| Reusable Cards | Copy-paste div structures | `<Card h1="..."/>` |
-| Style Variations | Multiple CSS classes | `@micro:Variant` |
-| Content Slots | Repeated markup | `{slot_name}` syntax |
-| Team Collaboration | Template fragmentation | Centralized macros |
-
-
-## 🏗️ Roadmap
+## 🏗Roadmap
 
 - [ ] VS Code extension
 - [ ] CLI tool for static generation
 - [ ] Interactive playground
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! 
 
-## 📜 License
+## License
 
 MIT © [Jeffrey0117](https://github.com/Jeffrey0117)
+
