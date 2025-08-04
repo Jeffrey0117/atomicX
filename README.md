@@ -118,38 +118,6 @@ Style specific child elements using `el-[index]`:
 | [Use Cases](docs/use-cases.md) | Common patterns and best practices |
 | [Debugging](docs/debugging.md) | Troubleshooting templates |
 
-## Examples
-
-### Card Component
-```html
-<!-- Define -->
-<div class="@macro:ProfileCard flex gap-4 items-center">
-  <img class="w-12 h-12 rounded-full" src="{avatar}">
-  <div>
-    <h4 class="font-bold">{name}</h4>
-    <p class="text-sm">{role}</p>
-  </div>
-</div>
-
-<!-- Use -->
-<ProfileCard 
-  avatar="user.jpg" 
-  name="Jane Doe" 
-  role="Frontend Developer"
-/>
-```
-
-### Button Variants
-```html
-<!-- Base Button -->
-<button class="@macro:Btn px-4 py-2 rounded @micro:PrimaryBtn bg-blue-500 text-white">
-  {children}
-</button>
-
-<!-- Variants -->
-<Btn>Default</Btn>
-<PrimaryBtn>Primary</PrimaryBtn>
-```
 
 ## Debugging
 
@@ -175,4 +143,5 @@ We welcome contributions!
 ## License
 
 MIT © [Jeffrey0117](https://github.com/Jeffrey0117)
+
 
