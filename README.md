@@ -18,6 +18,11 @@
 
 </div>
 
+## Page (Learn more about us)
+
+
+👉 [AtomicX](https://jeffrey0117.github.io/atomicX)
+
 ## Features
 
 - **Macro Components** - Define reusable templates with `@macro:` syntax
@@ -37,9 +42,9 @@
 | Team Collaboration | Template fragmentation | Centralized macros |
 
 ---
-## Demo
+## Demo (made by atomicX)
 
-👉 [index.html](https://jeffrey0117.github.io/atomicX/)
+👉 [layout](https://jeffrey0117.github.io/atomicX/demo.html)
 
 👉 [Source code](https://github.com/Jeffrey0117/atomicX/blob/main/docs/index.html)
 
@@ -150,6 +155,7 @@ We welcome contributions!
 ## License
 
 MIT © [Jeffrey0117](https://github.com/Jeffrey0117)
+
 
 
 
